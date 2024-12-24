@@ -1,9 +1,13 @@
 from openai import OpenAI
+import json
 
 def chit_chat(prompt: str, model: str = "gpt-3.5-turbo") -> str:
 
+    with open('config.json', 'r') as file:
+        config = json.load(file)
+
     # Set up the OpenAI client
-    client = OpenAI(api_key="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")
+    client = OpenAI(api_key=config["openaiKey"])
     
     # Construct a prompt that emphasizes using only the document's information
     messages = [
